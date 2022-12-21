@@ -76,7 +76,7 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
         vacancies, found = func_fetch_vacancies(job_specialization, job_area, vacancies_period, token)
         for vacancy in vacancies:
             rub_salary = func_predict_rub_salary(vacancy)
-            if rub_salary != None:
+            if rub_salary:
                 salary_sum += rub_salary
                 vacancies_processed += 1
         job_statistics[popular_prog_language] = {
