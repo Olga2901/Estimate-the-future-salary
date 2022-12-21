@@ -91,14 +91,12 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
 
 
 def predict_rub_salary(salary_from, salary_to):
-    salary = (
-       lambda salary_from, salary_to:
-       ((salary_from + salary_to) / 2) if (salary_from and salary_to) else
-       (salary_from * 1.2) if (salary_from and not salary_to) else
-       (salary_to * 0.8) if (not salary_from and salary_to) else
-       None
-    )
-    return salary(salary_from, salary_to)
+    if salary_from and salary_to:
+        return (salary_from + salary_to) // 2
+    if salary_from and not salary_to:
+        return int(salary_from * 1.2)
+    if not salary_from and salary_to:
+        return int(salary_to * 0.8)
 
 
 def predict_rub_salary_hh(vacancy):
