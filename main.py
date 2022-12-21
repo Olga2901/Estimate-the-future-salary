@@ -135,8 +135,8 @@ def get_vacancies_statictic_in_table(title, statictics):
 
     
 def main():
-    sj_api_key = os.environ["SUPERJOB_TOKEN"]
     load_dotenv()
+    sj_api_key = os.environ["SUPERJOB_TOKEN"]
     sj_job_area = 4
     hh_job_area = 1
     vacancies_search_days = 30
