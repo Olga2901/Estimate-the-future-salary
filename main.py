@@ -56,7 +56,7 @@ def fetch_sj_vacancies(keyword, town, date_published_from, token = None):
     return vacancies, found
 
 
-def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_area, vacancies_period, token = None):
+def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_area, vacancies_period, token=None):
     job_statistics = {}
     popular_prog_languages = [
         "Java",
@@ -79,11 +79,11 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
             if rub_salary:
                 salary_sum += rub_salary
                 vacancies_processed += 1
-        job_statistics[popular_prog_language] = {
+            job_statistics[popular_prog_language] = {
                     "vacancies_found": found,
                     "average_salary": int(salary_sum / vacancies_processed),
                     "vacancies_processed": vacancies_processed,
-        }
+            }
     return job_statistics
 
 
@@ -108,7 +108,7 @@ def predict_rub_salary_sj(vacancy):
 
 
 def get_vacancies_statictic_in_table(title, statictics):
-    table_data = [
+     profession_statistic = [
         [
             "Язык программирования",
             "Вакансий найдено",
@@ -117,7 +117,7 @@ def get_vacancies_statictic_in_table(title, statictics):
         ]
     ]
     for prog_lang, statictic in statictics.items():
-        table_data.append(
+         profession_statistic.append(
            [
                prog_lang,
                statictic["vacancies_found"],
@@ -125,7 +125,7 @@ def get_vacancies_statictic_in_table(title, statictics):
                statictic["average_salary"],
           ]
         )
-    table_instance = SingleTable(table_data, title)
+    table_instance = SingleTable( profession_statistic, title)
     return table_instance.table
 
     
