@@ -14,18 +14,24 @@
 
 ## Установка
 Установить виртуальное окружение и войти в него. Например, командой:
-> `python -m venv env`
+>
+>  ```python -m venv env```
 > 
-> `source env/bin/activate`
+> ```source env/bin/activate```
 
 Для API hh не требуется ключ, для SJ требуется ключ, для этого нужно зарегистрировать приложение [на сайте](https://api.superjob.ru/) и получить токен.
-Создать файл `.env` и внести в него ваш токен `sj_api_key=[SUPERJOB_TOKEN]`
-Установить зависимости командой `pip install -r requirements.txt`
+Создать файл `.env` и внести в него ваш токен 
+
+```sj_api_key=[SUPERJOB_TOKEN]```
+
+Установить зависимости командой 
+
+```pip install -r requirements.txt```
 
 ## Использование
 
 Запуск без параметров:
-> `python main.py`
+> ```python main.py```
 
 Cкрипт будет собирать статистику по поисковым фразам: `Java, Python, Ruby, PHP, C++, C#, Go, Scala, Swift`
 
