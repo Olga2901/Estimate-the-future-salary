@@ -19,9 +19,10 @@ def fetch_hh_vacancies(text, area, date_from, token = None):
         params["page"] = page
         page_response = requests.get(hh_api_url, params)
         page_response.raise_for_status()
-        pages_number = page_response.json()["pages"]
+        response = page_response.json() 
+        pages_number = response["pages"]
         page += 1
-        vacancies_on_page = page_response.json()
+        vacancies_on_page = response
         vacancies += vacancies_on_page["items"]
         found = vacancies_on_page["found"]
     return vacancies, found
