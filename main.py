@@ -16,7 +16,7 @@ def fetch_hh_vacancies(text, area, date_from, token = None):
       "date_from": date_from,
     }
     while page < pages_number:
-        params.update({"page": page})
+        params["page"] = page
         page_response = requests.get(hh_api_url, params)
         page_response.raise_for_status()
         pages_number = page_response.json()["pages"]
@@ -44,7 +44,7 @@ def fetch_sj_vacancies(keyword, town, date_published_from, token = None):
         "count": vacancies_on_page_count,
     }
     while page < pages_number:
-        params.update({"page": page})
+        params["page"] = page
         page_response = requests.get(sj_api_url, params=params, headers=headers)
         page_response.raise_for_status()
         vacancies_on_page = page_response.json()
@@ -78,15 +78,11 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
             if rub_salary != None:
                 salary_sum += rub_salary
                 vacancies_processed += 1
-        job_statistics.update(
-            {
-                popular_prog_language: {
+        job_statistics[popular_prog_language] = {
                     "vacancies_found": found,
                     "average_salary": int(salary_sum / vacancies_processed),
                     "vacancies_processed": vacancies_processed,
-                }
-            }
-        )
+        }
     return job_statistics
 
 
