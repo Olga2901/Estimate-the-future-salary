@@ -70,8 +70,8 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
         "Swift",
     ]
     for popular_prog_language in popular_prog_languages:
-        salary_sum = 1
-        vacancies_processed = 1
+        salary_sum = 0
+        vacancies_processed = 0
         job_specialization = f"Программист {popular_prog_language}"
         vacancies, found = func_fetch_vacancies(job_specialization, job_area, vacancies_period, token)
         for vacancy in vacancies:
@@ -79,10 +79,11 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
             if rub_salary:
                 salary_sum += rub_salary
                 vacancies_processed += 1
+         if vacancies_processed != 0:
             job_statistics[popular_prog_language] = {
-                    "vacancies_found": found,
-                    "average_salary": int(salary_sum / vacancies_processed),
-                    "vacancies_processed": vacancies_processed,
+                "vacancies_found": found,
+                "average_salary": int(salary_sum / vacancies_processed),
+                "vacancies_processed": vacancies_processed,
             }
     return job_statistics
 
