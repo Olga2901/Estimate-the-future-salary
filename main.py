@@ -79,7 +79,7 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
             if rub_salary:
                 salary_sum += rub_salary
                 vacancies_processed += 1
-         if vacancies_processed != 0:
+         if vacancies_processed:
             job_statistics[popular_prog_language] = {
                 "vacancies_found": found,
                 "average_salary": int(salary_sum / vacancies_processed),
