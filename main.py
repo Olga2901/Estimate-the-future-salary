@@ -76,18 +76,22 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
         vacancies, found = func_fetch_vacancies(job_specialization, job_area, vacancies_period, token)
         for vacancy in vacancies:
             rub_salary = func_predict_rub_salary(vacancy)
-            if rub_salary:
-                salary_sum += rub_salary
-                vacancies_processed += 1
-        try:
-            job_statistics[popular_prog_language] = {
-                "vacancies_found": found,
-                "average_salary": int(salary_sum / vacancies_processed),
-                "vacancies_processed": vacancies_processed,
-            }
-        except ZeroDivisionError:
-            pass
+            try:
+                if rub_salary:
+                    salary_sum += rub_salary
+                    vacancies_processed += 1
+                    average_salary = int(salary_sum / vacancies_processed)
+                else:
+                    not rub_salary
+            except ZeroDivisionError:
+                average_salary = 0
+        job_statistics[popular_prog_language] = {
+            "vacancies_found": found,
+            "average_salary": average_salary,
+            "vacancies_processed": vacancies_processed,
+        }
     return job_statistics
+
 
 
 def predict_rub_salary(salary_from, salary_to):
