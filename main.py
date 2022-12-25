@@ -84,9 +84,6 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
     return job_statistics    
     
 
-
-
-
 def predict_rub_salary(salary_from, salary_to):
     if salary_from and salary_to:
         return (salary_from + salary_to) // 2
