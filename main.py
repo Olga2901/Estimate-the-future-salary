@@ -70,28 +70,20 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
         "Swift",
     ]
     for popular_prog_language in popular_prog_languages:
-        salary_sum = 0
-        vacancies_processed = 0
-        average_salary = 0
+        salary_sum = []
         job_specialization = f"Программист {popular_prog_language}"
         vacancies, found = func_fetch_vacancies(job_specialization, job_area, vacancies_period, token)
         for vacancy in vacancies:
             rub_salary = func_predict_rub_salary(vacancy)
-            try:
-                if rub_salary:
-                    salary_sum += rub_salary
-                    vacancies_processed += 1
-                    average_salary = int(salary_sum / vacancies_processed)
-                else:
-                    not rub_salary
-            except ZeroDivisionError:
-                average_salary = 0
+            salary_sum.append(rub_salary) if rub_salary else 0
         job_statistics[popular_prog_language] = {
             "vacancies_found": found,
-            "average_salary": average_salary,
-            "vacancies_processed": vacancies_processed,
+            "average_salary":  int(sum(salary_sum) / len(salary_sum)) if salary_sum else 0,
+            "vacancies_processed": len(vacancies)
         }
-    return job_statistics
+    return job_statistics    
+    
+
 
 
 
