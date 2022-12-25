@@ -72,6 +72,7 @@ def get_vacancies_statistic(func_fetch_vacancies, func_predict_rub_salary, job_a
     for popular_prog_language in popular_prog_languages:
         salary_sum = 0
         vacancies_processed = 0
+        average_salary = 0
         job_specialization = f"Программист {popular_prog_language}"
         vacancies, found = func_fetch_vacancies(job_specialization, job_area, vacancies_period, token)
         for vacancy in vacancies:
